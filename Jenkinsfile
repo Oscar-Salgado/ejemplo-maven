@@ -5,8 +5,8 @@ pipeline {
         stage('Compile') {
             steps {
                 script {
-                        sh "./mvnw clean compile -e"
-                    }
+					sh "./mvnw clean compile -e"
+					 
                 }
                 
             }
@@ -14,8 +14,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                        sh "./mvnw clean test -e"
-                    }
+					sh "./mvnw clean test -e"
+					 
                 }
                 
             }
@@ -23,8 +23,8 @@ pipeline {
         stage('Jar') {
             steps {
                 script {
-                        sh "./mvnw clean package -e"
-                    }
+					sh "./mvnw clean package -e"
+					 
                 }
                 
             }
@@ -32,9 +32,9 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-					sh "nohup bash mvnw spring-boot:run &"
-						sleep 30
-                    }                       
+                     sh "nohup bash mvnw spring-boot:run &"
+					 sleep 20
+											
                 }
                 
             }
