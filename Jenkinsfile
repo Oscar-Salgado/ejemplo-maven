@@ -11,6 +11,12 @@ pipeline {
                 
             }
         }
+		stage('SonarQube') {
+			def scannerHome = tool 'sonar-scanner';
+			withSonarQubeEnv('sonarqube-server') { 
+			bat "${scannerHome}/bin/sonar-scanner -Dsonar.sonar.projectKey=Sonarqube-jenkins -Dsonar.sonar.projectBaseDir=c:/repo/ejemplo-maven/ -Dsonar.sonar.sources=src -Dsonar.sonar.java.binaries=build" 
+			}
+		}
         stage('Test') {
             steps {
                 script {
