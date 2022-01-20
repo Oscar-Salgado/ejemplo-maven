@@ -22,6 +22,7 @@ pipeline {
                 
             }
         }
+		
         stage('Test') {
             steps {
                 script {
@@ -40,6 +41,16 @@ pipeline {
                 
             }
         }
+        stage('uploadNexus') {
+            steps {
+                script {
+						nexusPublisher nexusInstanceId: 'nexus_server_jesus', nexusRepositoryId: 'test-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'C:\\repo\\ejemplo-maven\\build\\DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
+                    
+                }
+                
+            }
+        }
+		
         stage('Run') {
             steps {
                 script {
